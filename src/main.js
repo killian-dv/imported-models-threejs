@@ -21,8 +21,13 @@ const scene = new THREE.Scene();
 
 const gltfLoader = new GLTFLoader();
 
-gltfLoader.load("/models/Duck/glTF/Duck.gltf", (gltf) => {
-  console.log(gltf);
+gltfLoader.load("/models/FlightHelmet/glTF/FlightHelmet.gltf", (gltf) => {
+  const children = [...gltf.scene.children];
+  children.forEach((child) => {
+    child.castShadow = true;
+    child.receiveShadow = true;
+  });
+  scene.add(...children);
 });
 
 /**
